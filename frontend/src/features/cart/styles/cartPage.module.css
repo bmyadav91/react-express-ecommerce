@@ -1,0 +1,13 @@
+.cartContentContainer {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 10px;
+}
+
+
+
+@media (max-width: 991.98px) {
+    .cartContentContainer {
+        grid-template-columns: 1fr;
+    }
+}

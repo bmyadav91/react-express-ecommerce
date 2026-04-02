@@ -1,0 +1,53 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    border: .5px solid #ccc;
+
+    width: 100%;
+    max-width: 500px;
+}
+
+.formContainer .field {
+    display: flex;
+    flex-direction: column;
+}
+
+.formContainer .field .label {
+    font-size: .85rem;
+    font-weight: 500;
+    color: #555;
+    letter-spacing: .5px;
+}
+
+/* important for take parent available spaces  */
+.formContainer input,
+.formContainer textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.formContainer .field input[type="text"],
+.formContainer .field input[type="number"],
+.formContainer .field input[type="password"],
+.formContainer .field textarea {
+    padding: 6px;
+    border-radius: 10px;
+    outline: 0;
+    border: .5px solid #ccc;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: gray;
+    opacity: .5;
+}
+
+.formContainer .field .note {
+    font-size: .7rem;
+    color: #666;
+    letter-spacing: .6px;
+    margin-top: 2px;
+}

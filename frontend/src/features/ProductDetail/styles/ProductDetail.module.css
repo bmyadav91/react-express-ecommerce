@@ -1,0 +1,124 @@
+.topBar {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    /* 40% / 60% */
+    gap: 10px;
+}
+
+.leftSide,
+.rightSide {
+    flex: 1;
+    /* each takes equal space */
+    min-width: 0;
+    /* prevents overflow issues */
+    padding: 5px;
+}
+
+.leftSide {
+    border-right: .5px solid #ccc;
+}
+
+.thumbnailParent {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    min-height: 200px;
+}
+
+.thumbnailParent img {
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.thumbnailParent img:hover {
+    transform: scale(1.5);
+}
+
+.images {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.imageParent {
+    width: 55px;
+    border-radius: 2px;
+    background-color: #ccc;
+    overflow: hidden;
+}
+
+.imageParent img {
+    width: 100%;
+    object-fit: contain;
+    padding: 5px;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.imageParent img:hover {
+    transform: scale(1.2);
+}
+
+.title {
+    font-size: 26px;
+    letter-spacing: .8px;
+    font-weight: 600;
+}
+
+.shortDescription {
+    font-size: 1rem;
+    letter-spacing: .5px;
+}
+
+.h2Title {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.infoChildHeading {
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.infoChildValue {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: .5px;
+}
+
+
+.similarProductContainer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+
+
+
+
+
+/* Tablet (768px – 991px) */
+@media (max-width: 991.98px) {
+    .topBar {
+        grid-template-columns: 1fr 1fr; /* 50 / 50 */
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 767.98px) {
+    .topBar {
+        grid-template-columns: 1fr;
+    }
+
+    .leftSide {
+        border-right: none;
+    }
+}
