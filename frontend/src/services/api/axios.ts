@@ -1,8 +1,9 @@
 import axios from "axios";
+import { constantLinks } from "../../constants/link";
 import { useAuthStore } from "../../features/auth/store/userStore";
 
 export const api = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: constantLinks?.BASE_API_URL,
     timeout: 10000, 
     headers: {
         "Content-Type": "application/json"
