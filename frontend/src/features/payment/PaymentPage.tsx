@@ -14,6 +14,7 @@ import { buildPriceSummary } from "../../functions/buildPriceSummary";
 import { useCartStore } from "../cart/store/cartStore";
 import { useGetCartProducts } from "../cart/hooks/useGetCartProducts";
 import { useAuthStore } from "../auth/store/userStore";
+import { usePlaceOrder } from "./hooks/usePlaceOrder";
 import { useNavigate } from "react-router-dom";
 
 // components 
@@ -42,7 +43,7 @@ const paymentOption: RadioField[] = [
 const PaymentPage = () => {
     console.log("payment page re rendered");
     const navigate = useNavigate();
-    const { cart } = useCartStore();
+    const { cart, clearCart } = useCartStore();
     const ProductIds = useMemo(() => Object.keys(cart), [Object.keys(cart).length]);
     const { token } = useAuthStore();
     const isAuthenticated = !!token;
@@ -50,6 +51,8 @@ const PaymentPage = () => {
 
     const { data, loading, error } = useGetCartProducts(ProductIds);
     const [selectedPayment, setSelectedPayment] = useState("cod");
+
+    const { placeOrder, error: placeError, SetError: PlaceSetError, loading: placeLoading } = usePlaceOrder();
 
 
     const summary = useMemo(() => {
@@ -62,13 +65,26 @@ const PaymentPage = () => {
         return formatPriceSummaryMap(summary);
     }, [summary]);
 
-    const processCheckPlaceOrder = () => {
-        let dataToSend = {
-            "payment_method": selectedPayment,
-            "products": ProductIds
+    const processCheckPlaceOrder = async () => {
+        if (!selectedPayment) {
+            PlaceSetError("Please select the payment method");
+            return;
         }
 
-        console.log("Data to send on server => ", dataToSend)
+        if (Object.keys(cart)?.length === 0) {
+            PlaceSetError("Please add item in your cart then place order");
+            return;
+        }
+
+        const res = await placeOrder(
+            selectedPayment,
+            cart
+        )
+
+        if (res) {
+            clearCart();
+            navigate("/orders");
+        }
     }
 
     const handleClick = () => {
@@ -117,6 +133,10 @@ const PaymentPage = () => {
 
                             <div style={{ height: "10px" }} />
 
+                            {placeError && (
+                                <p className="text-center text-danger">{placeError}</p>
+                            )}
+
                             <Button
                                 title={isAuthenticated ? "Place Order" : "Login to Place Order"}
                                 style={{
@@ -124,6 +144,8 @@ const PaymentPage = () => {
                                     justifyContent: "center"
                                 }}
                                 onClick={handleClick}
+                                isDisabled={loading || placeLoading}
+                                isProcessing={loading || placeLoading}
                             />
 
                         </div>

@@ -1,0 +1,23 @@
+.profileContainer {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    border: .1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.menuList {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+
+    border: .1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.menuList a {
+    text-decoration: none;
+}

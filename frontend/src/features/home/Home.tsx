@@ -64,7 +64,7 @@ const HomePage = () => {
             </SectionTitle>
 
             <>
-                {data.length > 0 ? (
+                {data?.length > 0 ? (
                     <ProductList
                         products={data}
                         renderActions={(product) => (

@@ -16,9 +16,8 @@ export const getProducts = async ({
     total: number;
 }> => {
     console.log("Home getProducts called")
-    const url = q ? "/products/search" : "/products";
 
-    const response = await api.get(url, {
+    const response = await api.get("/", {
         params: {
             limit,
             skip,

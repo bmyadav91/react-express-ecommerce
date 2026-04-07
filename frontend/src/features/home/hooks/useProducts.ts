@@ -61,6 +61,6 @@ export const useProducts = (initialQuery = "") => {
     query,
     setQuery,
     loadMore,
-    hasMore: data.length < total,
+    hasMore: data?.length < total,
   };
 };

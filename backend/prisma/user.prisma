@@ -1,6 +1,18 @@
-model user {
-    id  String  @id @default(uuid())
-    email   String @unique
-    name    String?
-    createdAt   DateTime    @default(now())
+enum UserStatus {
+    ACTIVE
+    INACTIVE
+    BLOCKED
+}
+
+model User {
+    id        String     @id @default(uuid())
+    email     String     @unique
+    name      String?
+    password  String // Will store the hashed password
+    status    UserStatus @default(ACTIVE)
+    created_at DateTime   @default(now())
+
+    orders     Order[]
+    
+    @@map("users")
 }

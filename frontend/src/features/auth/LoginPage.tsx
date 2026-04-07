@@ -1,5 +1,9 @@
 import { useMemo, useState } from "react";
 
+// hooks 
+import { useAuth } from "./hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+
 // styles 
 import styles from "./styles/login.module.css"
 
@@ -38,23 +42,36 @@ const registerFields: formField[] = [
 
 const LoginPage = () => {
     console.log("Login page re rendered");
+    const navigation = useNavigate();
     const [mode, setMode] = useState<"login" | "register">("login");
 
     const fields = useMemo(() => (
         (mode === "login" ? loginFields : registerFields)
-    ), [mode])
+    ), [mode]);
 
-    const handlesubmit = (data: Record<string, string | number | boolean>) => {
+    const { loading, error, Login, Register } = useAuth();
+
+    const handlesubmit = async (data: Record<string, string | number | boolean>) => {
         if (!data?.email || !data?.password) {
             return alert("Email and password required");
         }
         if (mode === "login") {
-            console.log("login data => ", data)
-        } else {
-            if (!data?.name) {
-                return alert("Name is required");
+            const loginRes = await Login(
+                data?.email as string,
+                data?.password as string
+            )
+            if (loginRes) {
+                navigation("/")
             }
-            console.log("register data => ", data)
+        } else {
+            const registerRes = await Register(
+                data?.email as string,
+                data?.password as string,
+                data?.name as string
+            )
+            if (registerRes) {
+                navigation("/")
+            }
         }
     }
 
@@ -63,7 +80,13 @@ const LoginPage = () => {
             <FormUI
                 fields={fields}
                 onSubmit={(formData: Record<string, string | number | boolean>) => handlesubmit(formData)}
+                isButtonDisabled={loading}
+                isButtonProcessing={loading}
             />
+
+            {error && (
+                <p className="text-center text-danger">{error}</p>
+            )}
 
             <p style={{ marginTop: "10px", fontSize: ".9rem", color: "#444" }}>
                 {mode === "login" ? (

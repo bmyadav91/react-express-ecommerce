@@ -9,7 +9,10 @@ const ProductDetailPage = lazy(() => import("./features/ProductDetail/Details"))
 const CartPage = lazy(() => import("./features/cart/CartPage"));
 const AddressPage = lazy(() => import("./features/address/AddressPage"));
 const PaymentPage = lazy(() => import("./features/payment/PaymentPage"));
-const LoginPage = lazy(() => import("./features/auth/LoginPage"))
+const LoginPage = lazy(() => import("./features/auth/LoginPage"));
+const AccountPage = lazy(() => import("./features/account/AccountPage"));
+const OrderPage = lazy(() => import("./features/order/ordersPage"));
+const OrderDetail = lazy(() => import("./features/order/orderDetail"));
 
 
 
@@ -32,6 +35,9 @@ function App() {
             <Route path="/address" element={<AddressPage />} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/profile" element={<AccountPage />} />
+            <Route path="/orders" element={<OrderPage />} />
+            <Route path="/orders/:id" element={<OrderDetail />} />
           </Route>
 
         </Routes>
