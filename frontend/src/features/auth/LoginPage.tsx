@@ -1,5 +1,8 @@
 import { useMemo, useState } from "react";
 
+// context 
+import { Helmet } from "react-helmet-async";
+
 // hooks 
 import { useAuth } from "./hooks/useAuth";
 import { useNavigate } from "react-router-dom";
@@ -77,6 +80,11 @@ const LoginPage = () => {
 
     return (
         <div className={`${styles.container} container`}>
+            <Helmet>
+                <title>{`Login/Sign up`}</title>
+                <meta name="description" content={"auth"} />
+            </Helmet>
+
             <FormUI
                 fields={fields}
                 onSubmit={(formData: Record<string, string | number | boolean>) => handlesubmit(formData)}

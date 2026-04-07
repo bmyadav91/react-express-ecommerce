@@ -1,6 +1,9 @@
 import styles from "./styles/account.module.css"
 import { Link } from "react-router-dom";
 
+// context 
+import { Helmet } from "react-helmet-async";
+
 // hooks 
 import { useNavigate } from "react-router-dom";
 import { useAccount } from "./hooks/useAccount";
@@ -23,6 +26,10 @@ const AccountPage = () => {
 
     return (
         <section className="container my-2">
+            <Helmet>
+                <title>{`My account | ${data?.name || ""}`}</title>
+                <meta name="description" content={"My prfoile"} />
+            </Helmet>
             {loading ? (
                 <SkeletonUI
                     count={1}

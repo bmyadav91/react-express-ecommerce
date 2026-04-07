@@ -1,10 +1,11 @@
 import { useMemo } from "react";
 
+// context 
+import { Helmet } from "react-helmet-async";
+
 // functions 
 import { formatPriceSummaryMap } from "../../functions/formatPriceSummaryMap";
 import { buildPriceSummary } from "../../functions/buildPriceSummary";
-
-
 
 // styles 
 import styles from "./styles/cartPage.module.css"
@@ -53,6 +54,10 @@ const CartPage = () => {
 
     return (
         <div className="container my-2">
+            <Helmet>
+                <title>{`My cart`}</title>
+                <meta name="description" content={"My cart"} />
+            </Helmet>
             {loading ? (
                 <SkeletonUI
                     count={5}

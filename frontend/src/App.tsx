@@ -1,3 +1,4 @@
+import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
@@ -18,31 +19,33 @@ const OrderDetail = lazy(() => import("./features/order/orderDetail"));
 
 function App() {
   return (
-    <BrowserRouter>
-      <Suspense
-        fallback={
-          <div style={{ position: "relative", height: "100vh" }}>
-            <FullscreenLoader />
-          </div>
-        }
-      >
-        <Routes>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Suspense
+          fallback={
+            <div style={{ position: "relative", height: "100vh" }}>
+              <FullscreenLoader />
+            </div>
+          }
+        >
+          <Routes>
 
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/products/:id" element={<ProductDetailPage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/address" element={<AddressPage />} />
-            <Route path="/payment" element={<PaymentPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/profile" element={<AccountPage />} />
-            <Route path="/orders" element={<OrderPage />} />
-            <Route path="/orders/:id" element={<OrderDetail />} />
-          </Route>
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/products/:id" element={<ProductDetailPage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/address" element={<AddressPage />} />
+              <Route path="/payment" element={<PaymentPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/profile" element={<AccountPage />} />
+              <Route path="/orders" element={<OrderPage />} />
+              <Route path="/orders/:id" element={<OrderDetail />} />
+            </Route>
 
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 

@@ -3,6 +3,9 @@ import { useMemo, useState } from "react";
 // styles 
 import styles from "./styles/PaymentPage.module.css"
 
+// context 
+import { Helmet } from "react-helmet-async";
+
 // types 
 import type { RadioField } from "../../types/formField";
 
@@ -106,6 +109,11 @@ const PaymentPage = () => {
 
     return (
         <div className="container my-2">
+            <Helmet>
+                <title>{`Payment`}</title>
+                <meta name="description" content={"Payment page"} />
+            </Helmet>
+
             {loading ? (
                 <SkeletonUI
                     count={1}

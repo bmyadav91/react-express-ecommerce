@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 
+// context 
+import { Helmet } from "react-helmet-async";
+
 // styles 
 import styles from "./styles/ProductDetail.module.css"
 
@@ -61,6 +64,16 @@ const ProductDetailPage = () => {
 
     return (
         <div className="container my-2">
+            <Helmet>
+                <title>{data ? `${data.title}` : "Loading Product..."}</title>
+                <meta name="description" content={data?.description || "Product details"} />
+
+                {/* Social Media (Open Graph) - This makes sharing look great! */}
+                <meta property="og:title" content={data?.title} />
+                <meta property="og:description" content={data?.description} />
+                <meta property="og:image" content={selectedImage} />
+                <meta property="og:type" content="product" />
+            </Helmet>
 
             {/* product details | review | specifications  */}
             <section itemScope itemType="https://schema.org/Product">

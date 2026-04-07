@@ -1,8 +1,15 @@
-
+// context 
+import { Helmet } from "react-helmet-async";
 
 const OrderDetail = () => {
     return (
-        <div>Order details</div>
+        <>
+            <Helmet>
+                <title>{`Order details`}</title>
+                <meta name="description" content={"Order details"} />
+            </Helmet>
+            <div>Order details</div>
+        </>
     )
 }
 

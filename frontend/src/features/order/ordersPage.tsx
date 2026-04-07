@@ -1,6 +1,9 @@
 
 import styles from "./styles/orderList.module.css"
 
+// context 
+import { Helmet } from "react-helmet-async";
+
 // hooks 
 import { useOrderList } from "./hooks/useOrderList";
 
@@ -18,6 +21,10 @@ const OrderPage = () => {
 
     return (
         <div className="container my-2">
+            <Helmet>
+                <title>{`My orders`}</title>
+                <meta name="description" content={"My orders"} />
+            </Helmet>
             {loading ? (
                 <SkeletonUI
                     count={1}

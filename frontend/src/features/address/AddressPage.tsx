@@ -1,6 +1,9 @@
 
 import type { formField } from "../../types/formField";
 
+// context 
+import { Helmet } from "react-helmet-async";
+
 // hooks 
 import { useAddress } from "./store/addressStore";
 import { useNavigate } from "react-router-dom";
@@ -91,6 +94,10 @@ const AddressPage = () => {
                 padding: "10px",
             }}
         >
+            <Helmet>
+                <title>{`My address`}</title>
+                <meta name="description" content={"My address"} />
+            </Helmet>
 
             <SectionTitle>Address</SectionTitle>
 

@@ -3,6 +3,9 @@ import { useEffect } from "react";
 import { useProducts } from "./hooks/useProducts";
 import { ProductList } from "../../shared/product/Products";
 
+// context 
+import { Helmet } from "react-helmet-async";
+
 import { SectionTitle } from "../../shared/components/SectionTitle";
 
 // hooks 
@@ -59,6 +62,11 @@ const HomePage = () => {
     // if data loaded then show main UI 
     return (
         <div className="container my-2">
+            <Helmet>
+                <title>My E-Commerce Store</title>
+                <meta name="description" content={"The best place to buy electronic gadgets online with fast delivery."} />
+            </Helmet>
+
             <SectionTitle>
                 {searchQuery ? `Search: ${searchQuery}` : "Featured Products"}
             </SectionTitle>
